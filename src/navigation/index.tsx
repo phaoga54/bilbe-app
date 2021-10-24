@@ -3,9 +3,9 @@ import { Text, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { COLORS } from '@src/constant/theme';
 import HomeSvg from '@svgs/home.svg'
-import SettingSvg from '@svgs/setting.svg' 
-import { HomeScreen } from '@src/screens/home-screen';
+import SettingSvg from '@svgs/setting.svg'
 import { SettingsScreen } from '@src/screens/setting-screen';
+import { HomeStack } from './home-tab';
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +13,7 @@ export default function AppNavigator() {
     const renderTabBarItem = (_: any, route: any) => {
         let icon = null;
         let label = '';
-        switch (route.name) {
+        switch (route?.name) {
             case 'Home':
                 icon = <HomeSvg fill={'white'} />;
                 label = 'Home';
@@ -58,7 +58,7 @@ export default function AppNavigator() {
                 },
             }}
         >
-            <Tab.Screen name="Home" component={HomeScreen}
+            <Tab.Screen name="Home" component={HomeStack}
 
             />
             <Tab.Screen name="Settings" component={SettingsScreen} />

@@ -1,21 +1,36 @@
+import { useNavigation } from '@react-navigation/core';
+import { Header } from '@src/components/Header';
+import { BOOKS, IBook } from '@src/constant/data';
 import { decremented, getCounterValue, incremented } from '@src/redux/reducers/config-reducer';
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { FlatList, SafeAreaView, SectionList, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 
-export const HomeScreen = () => {
+export const HomeScreen = ({ }) => {
+    const navigation = useNavigation()
     const counter = useSelector(getCounterValue)
     const dispatch = useDispatch()
-
+    // console.log('navigation: ', navigation)
+    const _renderItem = ({ item }: { item: IBook }) => {
+        return <TouchableOpacity style={{ padding: 20 }}
+            onPress={() => { navigation.navigate('Detail', { bookName: item.title, maxChapter: item.maxChapter }) }}
+        >
+            <Text>{item.title} <Text>({item.maxChapter})</Text></Text>
+        </TouchableOpacity>
+    }
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Home!</Text>
-            <Text>------------------------</Text>
-            <Text>Counter value: {counter}</Text>
-            <View style={{ flexDirection: 'row',width:30,justifyContent:'space-between' }}>
-                <Text onPress={() => dispatch(incremented({ value: 1 }))}>+</Text>
-                <Text onPress={() => dispatch(decremented({ value: 1 }))}>-</Text>
-            </View>
-        </View>
+        <SafeAreaView style={{ flex: 1, backgroundColor: 'white' }}>
+            <Header header={'Book list'} />
+            <SectionList
+                sections={BOOKS}
+                keyExtractor={(item, index) => item.title}
+                renderItem={_renderItem}
+                renderSectionHeader={({ section: { title } }) => (
+                    <Text style={{ fontWeight: '600' }}>{title}</Text>
+                )}
+                style={{ marginLeft: 20 }}
+                initialNumToRender={15}
+            />
+        </SafeAreaView>
     );
 }

@@ -1,6 +1,10 @@
 export interface IConfig {
     value: number;
+    verses: {};
 }
 export interface IIncrementAction {
-    value:number
+    value: number
+}
+export interface IVerse {
+    verse: string
 }

@@ -38,7 +38,8 @@ const getInstance = () => {
         },
         async error => {
             const originalRequest = error.config;
-            Alert.alert('Something wrong with api')
+            // Alert.alert('Something wrong with api')
+            console.log('err: ',error)
             if (error?.response?.status === 401 && !originalRequest._retry) {
                 // const refreshToken = await getRefreshToken();
                 // originalRequest._retry = true;

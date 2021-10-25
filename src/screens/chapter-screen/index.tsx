@@ -12,7 +12,7 @@ export const DetailScreen = ({ route }: { route: any }) => {
     const _renderItem = ({ index }: { index: number }) => {
         return <TouchableOpacity style={{ padding: 20 }}
             onPress={() => {
-                navigation.navigate('Verse', { chapter: index + 1, bookName })
+                navigation.navigate('Verse', { chapter: index + 1, book_name:bookName })
             }}
         >
             <Text>Chapter {index + 1}</Text>

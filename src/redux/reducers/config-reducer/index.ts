@@ -17,12 +17,12 @@ const counterSlice = createSlice({
             state.value -= payload.value
         },
         favouriteVerse: (state, { payload }: PayloadAction<IVerse>) => {
-            let { verse } = payload || ''
-            console.log('verse: ', verse)
-            if (verse && !state.verses[verse]) {
-                state.verses[verse] = true
-            } else if (verse && state.verses[verse]) {
-                state.verses[verse] = false
+            let { verse_id } = payload || ''
+            console.log('verse_id: ', verse_id)
+            if (verse_id && !state.verses[verse_id]) {
+                state.verses[verse_id] = payload
+            } else if (verse_id && state.verses[verse_id]) {
+                state.verses[verse_id] = false
             }
         }
     }

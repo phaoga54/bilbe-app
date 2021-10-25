@@ -1,11 +1,12 @@
 import * as React from 'react';
-import { Text, View } from 'react-native';
+import { Text, TouchableOpacity, View } from 'react-native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { COLORS } from '@src/constant/theme';
 import HomeSvg from '@svgs/home.svg'
 import SettingSvg from '@svgs/setting.svg'
-import { SettingsScreen } from '@src/screens/setting-screen';
+import { FavouriteScreen } from '@src/screens/setting-screen';
 import { HomeStack } from './home-tab';
+import { FavouriteStack } from './farourite-tab';
 
 const Tab = createBottomTabNavigator();
 
@@ -20,7 +21,7 @@ export default function AppNavigator() {
                 break;
             case 'Settings':
                 icon = <SettingSvg fill={'white'} width={25} height={25} />;
-                label = 'Settings';
+                label = 'Favourite';
                 break;
         }
 
@@ -61,7 +62,7 @@ export default function AppNavigator() {
             <Tab.Screen name="Home" component={HomeStack}
 
             />
-            <Tab.Screen name="Settings" component={SettingsScreen} />
+            <Tab.Screen name="Settings" component={FavouriteStack} />
         </Tab.Navigator>
     );
 }
